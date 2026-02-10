@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Virtual Notice Board</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Virtual Notice Board</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="student-login.html">Student Login</a></li>
+                <li><a href="admin-login.html" class="active">Admin Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="login-section">
+        <div class="container">
+            <div class="login-box">
+                <div class="login-header">
+                    <i class="fas fa-user-shield"></i>
+                    <h2>Admin Login</h2>
+                    <p>Access the notice board management system</p>
+                </div>
+                
+                <form id="adminLoginForm" class="login-form">
+                    <!-- Admin Role Selection -->
+                    <div class="form-group">
+                        <label for="adminRole">
+                            <i class="fas fa-user-tag"></i> Admin Role
+                        </label>
+                        <select id="adminRole" required>
+                            <option value="">Select Role</option>
+                            <option value="super-admin">Super Admin</option>
+                            <option value="examination">Examination Admin</option>
+                            <option value="scholarship">Scholarship Admin</option>
+                            <option value="academics">Academics Admin</option>
+                            <option value="events">Events Admin</option>
+                            <option value="placement">Placement Admin</option>
+                        </select>
+                    </div>
+
+                    <!-- Username -->
+                    <div class="form-group">
+                        <label for="adminUsername">
+                            <i class="fas fa-user"></i> Username
+                        </label>
+                        <input type="text" id="adminUsername" placeholder="Enter username" required>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label for="adminPassword">
+                            <i class="fas fa-lock"></i> Password
+                        </label>
+                        <input type="password" id="adminPassword" placeholder="Enter password" required>
+                    </div>
+
+                    <!-- Remember Me -->
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="rememberMe">
+                        <label for="rememberMe">Remember me</label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                </form>
+
+                <!-- Demo Credentials Info -->
+                <div class="demo-credentials">
+                    <h4><i class="fas fa-info-circle"></i> Demo Credentials</h4>
+                    <p><strong>Super Admin:</strong> username: superadmin | password: super123</p>
+                    <p><strong>Section Admins:</strong> username: admin | password: admin123</p>
+                </div>
+
+                <div class="login-footer">
+                    <p>Are you a student? <a href="student-login.html">Login here</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Virtual College Notice Board System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script-backend.js"></script>
+</body>
+</html>

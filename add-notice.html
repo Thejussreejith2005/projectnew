@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Notice - Virtual Notice Board</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Virtual Notice Board</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="section-admin.html">Dashboard</a></li>
+                <li><a href="#" class="active">Add Notice</a></li>
+                <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="user-info">
+                <i class="fas fa-user-tie"></i>
+                <h3 id="sectionName">Section Admin</h3>
+                <p id="adminUsername">admin_user</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="section-admin.html" class="sidebar-link">
+                    <i class="fas fa-clipboard"></i> My Notices
+                </a>
+                <a href="add-notice.html" class="sidebar-link active">
+                    <i class="fas fa-plus-circle"></i> Add New Notice
+                </a>
+                <a href="section-admin.html" class="sidebar-link">
+                    <i class="fas fa-star"></i> Important Notices
+                </a>
+                <a href="section-admin.html" class="sidebar-link">
+                    <i class="fas fa-archive"></i> Archived Notices
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <section class="content-section active">
+                <div class="section-header">
+                    <h2><i class="fas fa-plus-circle"></i> <span id="formTitle">Add New Notice</span></h2>
+                    <a href="section-admin.html" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back to Dashboard
+                    </a>
+                </div>
+
+                <!-- Notice Form -->
+                <div class="form-container">
+                    <form id="noticeForm">
+                        <!-- Notice Title -->
+                        <div class="form-group">
+                            <label for="noticeTitle">
+                                <i class="fas fa-heading"></i> Notice Title *
+                            </label>
+                            <input 
+                                type="text" 
+                                id="noticeTitle" 
+                                placeholder="Enter notice title" 
+                                required
+                            >
+                        </div>
+
+                        <!-- Section/Category -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="noticeSection">
+                                    <i class="fas fa-tag"></i> Section/Category *
+                                </label>
+                                <select id="noticeSection" required>
+                                    <option value="">Select Section</option>
+                                    <option value="examination">Examination</option>
+                                    <option value="scholarship">Scholarship</option>
+                                    <option value="academics">Academics</option>
+                                    <option value="events">Events</option>
+                                    <option value="placement">Placement</option>
+                                </select>
+                            </div>
+
+                            <!-- Importance Flag -->
+                            <div class="form-group">
+                                <label for="noticeImportance">
+                                    <i class="fas fa-star"></i> Importance Level *
+                                </label>
+                                <select id="noticeImportance" required>
+                                    <option value="normal">Normal</option>
+                                    <option value="important">Important</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="form-group">
+                            <label for="noticeDescription">
+                                <i class="fas fa-align-left"></i> Description *
+                            </label>
+                            <textarea 
+                                id="noticeDescription" 
+                                rows="6" 
+                                placeholder="Enter detailed description of the notice" 
+                                required
+                            ></textarea>
+                        </div>
+
+                        <!-- Date Range -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="noticeDate">
+                                    <i class="fas fa-calendar"></i> Post Date *
+                                </label>
+                                <input 
+                                    type="date" 
+                                    id="noticeDate" 
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="expiryDate">
+                                    <i class="fas fa-calendar-times"></i> Expiry Date *
+                                </label>
+                                <input 
+                                    type="date" 
+                                    id="expiryDate" 
+                                    required
+                                >
+                            </div>
+                        </div>
+
+                        <!-- File Attachment -->
+                        <div class="form-group">
+                            <label for="noticeAttachment">
+                                <i class="fas fa-paperclip"></i> Attach File (Optional)
+                            </label>
+                            <div class="file-upload-wrapper">
+                                <input 
+                                    type="file" 
+                                    id="noticeAttachment" 
+                                    accept=".pdf,.jpg,.jpeg,.png"
+                                    onchange="handleFileSelect(event)"
+                                >
+                                <label for="noticeAttachment" class="file-upload-label">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <span>Click to upload or drag and drop</span>
+                                    <small>Supported formats: PDF, JPG, PNG (Max 5MB)</small>
+                                </label>
+                            </div>
+                            <div id="filePreview" class="file-preview"></div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> <span id="submitBtnText">Publish Notice</span>
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="resetForm()">
+                                <i class="fas fa-redo"></i> Reset
+                            </button>
+                            <button type="button" class="btn btn-outline" onclick="saveDraft()">
+                                <i class="fas fa-file"></i> Save as Draft
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Form Help -->
+                <div class="form-help">
+                    <h4><i class="fas fa-info-circle"></i> Guidelines for Posting Notices</h4>
+                    <ul>
+                        <li>Write clear and concise titles</li>
+                        <li>Provide complete information in the description</li>
+                        <li>Mark notices as "Important" only when necessary</li>
+                        <li>Set appropriate expiry dates</li>
+                        <li>Attach relevant documents when needed</li>
+                        <li>Review the notice before publishing</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script-backend.js"></script>
+</body>
+</html>

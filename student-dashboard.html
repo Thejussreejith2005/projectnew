@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Virtual Notice Board</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Virtual Notice Board</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" class="active">Notices</a></li>
+                <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="user-info">
+                <i class="fas fa-user-graduate"></i>
+                <h3>Student</h3>
+                <p id="studentId">STU001</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-link active" data-section="all-notices">
+                    <i class="fas fa-clipboard-list"></i> All Notices
+                </a>
+                <a href="#" class="sidebar-link" data-section="important-notices">
+                    <i class="fas fa-star"></i> Important Notices
+                </a>
+                <a href="#" class="sidebar-link" data-section="archived-notices">
+                    <i class="fas fa-archive"></i> Archived Notices
+                </a>
+            </nav>
+            
+            <!-- Section Filter in Sidebar -->
+            <div class="sidebar-filter">
+                <h4>Filter by Section</h4>
+                <div class="filter-checkboxes">
+                    <label>
+                        <input type="checkbox" value="examination" class="section-filter" checked> 
+                        Examination
+                    </label>
+                    <label>
+                        <input type="checkbox" value="scholarship" class="section-filter" checked> 
+                        Scholarship
+                    </label>
+                    <label>
+                        <input type="checkbox" value="academics" class="section-filter" checked> 
+                        Academics
+                    </label>
+                    <label>
+                        <input type="checkbox" value="events" class="section-filter" checked> 
+                        Events
+                    </label>
+                    <label>
+                        <input type="checkbox" value="placement" class="section-filter" checked> 
+                        Placement
+                    </label>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- All Notices Section -->
+            <section id="all-notices" class="content-section active">
+                <div class="section-header">
+                    <h2><i class="fas fa-clipboard-list"></i> All Notices</h2>
+                    <div class="search-box">
+                        <input type="text" id="searchNotices" placeholder="Search notices...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="quick-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-clipboard"></i>
+                        <span><strong id="totalCount">32</strong> Total</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-star"></i>
+                        <span><strong id="importantCount">8</strong> Important</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-clock"></i>
+                        <span><strong id="todayCount">3</strong> Today</span>
+                    </div>
+                </div>
+
+                <!-- Notices List -->
+                <div id="noticesList" class="notices-list">
+                    <!-- Sample Notice 1 - Important -->
+                    <div class="notice-card student-notice">
+                        <div class="notice-header">
+                            <div class="notice-meta">
+                                <span class="badge badge-blue">Examination</span>
+                                <span class="badge badge-important">Important</span>
+                            </div>
+                            <span class="notice-date">Feb 1, 2024</span>
+                        </div>
+                        <h3 class="notice-title">Mid-Semester Examination Schedule - Fall 2024</h3>
+                        <p class="notice-description">
+                            The mid-semester examinations for all undergraduate programs will be conducted from March 15-22, 2024. Students are advised to check the detailed timetable on the examination portal. Hall tickets will be available for download from March 10, 2024.
+                        </p>
+                        <div class="notice-footer">
+                            <span class="expiry-info">
+                                <i class="fas fa-calendar-times"></i> Expires: Mar 22, 2024
+                            </span>
+                            <button class="btn-small" onclick="viewNoticeDetails(1)">
+                                <i class="fas fa-eye"></i> View Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Sample Notice 2 - With Attachment -->
+                    <div class="notice-card student-notice">
+                        <div class="notice-header">
+                            <div class="notice-meta">
+                                <span class="badge badge-green">Scholarship</span>
+                            </div>
+                            <span class="notice-date">Jan 30, 2024</span>
+                        </div>
+                        <h3 class="notice-title">Merit Scholarship Application Open for 2024</h3>
+                        <p class="notice-description">
+                            Applications are now open for merit-based scholarships for the academic year 2024. Eligible students with a CGPA above 8.0 can apply. Please download the application form and submit before the deadline.
+                        </p>
+                        <div class="notice-attachments">
+                            <div class="attachment">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>scholarship_form.pdf</span>
+                                <button class="btn-icon" onclick="downloadFile('scholarship_form.pdf')">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notice-footer">
+                            <span class="expiry-info">
+                                <i class="fas fa-calendar-times"></i> Expires: Feb 28, 2024
+                            </span>
+                            <button class="btn-small" onclick="viewNoticeDetails(2)">
+                                <i class="fas fa-eye"></i> View Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Sample Notice 3 - Events -->
+                    <div class="notice-card student-notice">
+                        <div class="notice-header">
+                            <div class="notice-meta">
+                                <span class="badge badge-orange">Events</span>
+                            </div>
+                            <span class="notice-date">Jan 28, 2024</span>
+                        </div>
+                        <h3 class="notice-title">Annual Tech Fest 2024 - Registration Open</h3>
+                        <p class="notice-description">
+                            The annual tech fest "TechnoVista 2024" will be held on March 5-7, 2024. Students can register for various competitions including coding, robotics, and project exhibitions. Register now to secure your spot!
+                        </p>
+                        <div class="notice-attachments">
+                            <div class="attachment">
+                                <i class="fas fa-file-image"></i>
+                                <span>techfest_poster.jpg</span>
+                                <button class="btn-icon" onclick="viewImage('techfest_poster.jpg')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notice-footer">
+                            <span class="expiry-info">
+                                <i class="fas fa-calendar-times"></i> Expires: Mar 7, 2024
+                            </span>
+                            <button class="btn-small" onclick="viewNoticeDetails(3)">
+                                <i class="fas fa-eye"></i> View Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Sample Notice 4 - Academics -->
+                    <div class="notice-card student-notice">
+                        <div class="notice-header">
+                            <div class="notice-meta">
+                                <span class="badge badge-purple">Academics</span>
+                                <span class="badge badge-important">Important</span>
+                            </div>
+                            <span class="notice-date">Jan 25, 2024</span>
+                        </div>
+                        <h3 class="notice-title">Course Registration for Spring Semester 2024</h3>
+                        <p class="notice-description">
+                            Course registration for Spring Semester 2024 will begin on February 10, 2024. Students must complete their registration within the stipulated time. Please consult your academic advisor before registration.
+                        </p>
+                        <div class="notice-footer">
+                            <span class="expiry-info">
+                                <i class="fas fa-calendar-times"></i> Expires: Feb 20, 2024
+                            </span>
+                            <button class="btn-small" onclick="viewNoticeDetails(4)">
+                                <i class="fas fa-eye"></i> View Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Sample Notice 5 - Placement -->
+                    <div class="notice-card student-notice">
+                        <div class="notice-header">
+                            <div class="notice-meta">
+                                <span class="badge badge-red">Placement</span>
+                            </div>
+                            <span class="notice-date">Jan 22, 2024</span>
+                        </div>
+                        <h3 class="notice-title">Campus Recruitment Drive - Tech Giants 2024</h3>
+                        <p class="notice-description">
+                            Leading tech companies will be visiting campus for recruitment in February. Final year students are requested to update their resumes and register through the placement portal. Pre-placement talks will be scheduled soon.
+                        </p>
+                        <div class="notice-attachments">
+                            <div class="attachment">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>company_profiles.pdf</span>
+                                <button class="btn-icon" onclick="downloadFile('company_profiles.pdf')">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notice-footer">
+                            <span class="expiry-info">
+                                <i class="fas fa-calendar-times"></i> Expires: Mar 1, 2024
+                            </span>
+                            <button class="btn-small" onclick="viewNoticeDetails(5)">
+                                <i class="fas fa-eye"></i> View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Important Notices Section -->
+            <section id="important-notices" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-star"></i> Important Notices</h2>
+                </div>
+                <div id="importantNoticesList" class="notices-list">
+                    <!-- Important notices will be filtered and displayed here -->
+                </div>
+            </section>
+
+            <!-- Archived Notices Section -->
+            <section id="archived-notices" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-archive"></i> Archived Notices</h2>
+                </div>
+                <div id="archivedNoticesList" class="notices-list">
+                    <div class="notice-card student-notice archived">
+                        <div class="notice-header">
+                            <div class="notice-meta">
+                                <span class="badge badge-gray">Examination</span>
+                                <span class="badge badge-archived">Archived</span>
+                            </div>
+                            <span class="notice-date">Dec 15, 2023</span>
+                        </div>
+                        <h3 class="notice-title">End Semester Examination Results - Fall 2023</h3>
+                        <p class="notice-description">
+                            Results for the Fall 2023 end semester examinations have been published. Students can check their results on the student portal using their login credentials.
+                        </p>
+                        <div class="notice-footer">
+                            <span class="expiry-info expired">
+                                <i class="fas fa-calendar-times"></i> Expired: Jan 15, 2024
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Notice Detail Modal -->
+    <div id="noticeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Notice Details</h2>
+                <span class="close-modal" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Notice details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Viewer Modal -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content image-modal">
+            <span class="close-modal" onclick="closeImageModal()">&times;</span>
+            <img id="modalImage" src="" alt="Notice Image">
+        </div>
+    </div>
+
+    <script src="script-backend.js"></script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section Admin Dashboard - Virtual Notice Board</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Virtual Notice Board</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" class="active">Dashboard</a></li>
+                <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="user-info">
+                <i class="fas fa-user-tie"></i>
+                <h3 id="sectionName">Examination Admin</h3>
+                <p id="adminUsername">admin_user</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-link active" data-section="my-notices">
+                    <i class="fas fa-clipboard"></i> My Notices
+                </a>
+                <a href="add-notice.html" class="sidebar-link">
+                    <i class="fas fa-plus-circle"></i> Add New Notice
+                </a>
+                <a href="#" class="sidebar-link" data-section="important">
+                    <i class="fas fa-star"></i> Important Notices
+                </a>
+                <a href="#" class="sidebar-link" data-section="archived">
+                    <i class="fas fa-archive"></i> Archived Notices
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- My Notices Section -->
+            <section id="my-notices" class="content-section active">
+                <div class="section-header">
+                    <h2><i class="fas fa-clipboard"></i> My Posted Notices</h2>
+                    <a href="add-notice.html" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Add New Notice
+                    </a>
+                </div>
+
+                <!-- Statistics Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">
+                            <i class="fas fa-clipboard"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="myTotalNotices">12</h3>
+                            <p>Total Notices</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="myActiveNotices">9</h3>
+                            <p>Active Notices</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="myImportantNotices">3</h3>
+                            <p>Important</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon gray">
+                            <i class="fas fa-archive"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="myArchivedNotices">3</h3>
+                            <p>Archived</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search and Filter -->
+                <div class="filter-bar">
+                    <input type="text" id="searchMyNotice" placeholder="Search notices...">
+                    <select id="filterStatus">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="expired">Expired</option>
+                    </select>
+                </div>
+
+                <!-- Notices List -->
+                <div id="myNoticesList" class="notices-list">
+                    <!-- Sample Notice Card -->
+                    <div class="notice-card admin-notice">
+                        <div class="notice-header">
+                            <div class="notice-meta">
+                                <span class="badge badge-blue">Examination</span>
+                                <span class="badge badge-important">Important</span>
+                            </div>
+                            <div class="notice-actions">
+                                <button class="btn-icon" onclick="editNotice(1)">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-icon" onclick="deleteNotice(1)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <h3 class="notice-title">Mid-Semester Examination Schedule - Fall 2024</h3>
+                        <p class="notice-description">
+                            The mid-semester examinations for all undergraduate programs will be conducted from March 15-22, 2024. Students are advised to check the detailed timetable on the examination portal.
+                        </p>
+                        <div class="notice-footer">
+                            <div class="notice-info">
+                                <span><i class="fas fa-calendar"></i> Posted: Feb 1, 2024</span>
+                                <span><i class="fas fa-clock"></i> Expires: Mar 22, 2024</span>
+                            </div>
+                            <div class="notice-status">
+                                <span class="status-active">Active</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notice-card admin-notice">
+                        <div class="notice-header">
+                            <div class="notice-meta">
+                                <span class="badge badge-blue">Examination</span>
+                            </div>
+                            <div class="notice-actions">
+                                <button class="btn-icon" onclick="editNotice(2)">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-icon" onclick="deleteNotice(2)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <h3 class="notice-title">Hall Ticket Download Instructions</h3>
+                        <p class="notice-description">
+                            Students can download their examination hall tickets from the student portal starting February 5, 2024. Please ensure all fee payments are cleared before downloading.
+                        </p>
+                        <div class="notice-attachments">
+                            <div class="attachment">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>instructions.pdf</span>
+                            </div>
+                        </div>
+                        <div class="notice-footer">
+                            <div class="notice-info">
+                                <span><i class="fas fa-calendar"></i> Posted: Jan 28, 2024</span>
+                                <span><i class="fas fa-clock"></i> Expires: Mar 15, 2024</span>
+                            </div>
+                            <div class="notice-status">
+                                <span class="status-active">Active</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notice-card admin-notice">
+                        <div class="notice-header">
+                            <div class="notice-meta">
+                                <span class="badge badge-blue">Examination</span>
+                            </div>
+                            <div class="notice-actions">
+                                <button class="btn-icon" onclick="editNotice(3)">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-icon" onclick="deleteNotice(3)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <h3 class="notice-title">Answer Script Review Process</h3>
+                        <p class="notice-description">
+                            Students who wish to apply for answer script review should submit their applications within 7 days of result publication along with the prescribed fee.
+                        </p>
+                        <div class="notice-footer">
+                            <div class="notice-info">
+                                <span><i class="fas fa-calendar"></i> Posted: Jan 20, 2024</span>
+                                <span><i class="fas fa-clock"></i> Expires: Jan 31, 2024</span>
+                            </div>
+                            <div class="notice-status">
+                                <span class="status-expired">Expired</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Important Notices Section -->
+            <section id="important" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-star"></i> Important Notices</h2>
+                </div>
+                <div id="importantNoticesList" class="notices-list">
+                    <!-- Important notices will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Archived Notices Section -->
+            <section id="archived" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-archive"></i> Archived Notices</h2>
+                </div>
+                <div id="archivedNoticesList" class="notices-list">
+                    <!-- Archived notices will be loaded here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script-backend.js"></script>
+</body>
+</html>

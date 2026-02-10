@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Admin Dashboard - Virtual Notice Board</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Virtual Notice Board</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" class="active">Dashboard</a></li>
+                <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="user-info">
+                <i class="fas fa-user-shield"></i>
+                <h3>Super Admin</h3>
+                <p id="adminName">Administrator</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-link active" data-section="overview">
+                    <i class="fas fa-tachometer-alt"></i> Overview
+                </a>
+                <a href="#" class="sidebar-link" data-section="all-notices">
+                    <i class="fas fa-clipboard-list"></i> All Notices
+                </a>
+                <a href="#" class="sidebar-link" data-section="manage-admins">
+                    <i class="fas fa-users-cog"></i> Manage Admins
+                </a>
+                <a href="#" class="sidebar-link" data-section="statistics">
+                    <i class="fas fa-chart-bar"></i> Statistics
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Overview Section -->
+            <section id="overview" class="content-section active">
+                <div class="section-header">
+                    <h2><i class="fas fa-tachometer-alt"></i> Dashboard Overview</h2>
+                </div>
+
+                <!-- Statistics Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">
+                            <i class="fas fa-clipboard"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalNotices">45</h3>
+                            <p>Total Notices</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="activeNotices">32</h3>
+                            <p>Active Notices</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="importantNotices">8</h3>
+                            <p>Important Notices</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalAdmins">5</h3>
+                            <p>Section Admins</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section Overview -->
+                <div class="section-overview">
+                    <h3>Notices by Section</h3>
+                    <div class="section-cards">
+                        <div class="section-card">
+                            <div class="section-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h4>Examination</h4>
+                            <p class="section-count">12 Notices</p>
+                            <a href="#" class="btn-small">View All</a>
+                        </div>
+                        <div class="section-card">
+                            <div class="section-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <h4>Scholarship</h4>
+                            <p class="section-count">8 Notices</p>
+                            <a href="#" class="btn-small">View All</a>
+                        </div>
+                        <div class="section-card">
+                            <div class="section-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h4>Academics</h4>
+                            <p class="section-count">10 Notices</p>
+                            <a href="#" class="btn-small">View All</a>
+                        </div>
+                        <div class="section-card">
+                            <div class="section-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <h4>Events</h4>
+                            <p class="section-count">9 Notices</p>
+                            <a href="#" class="btn-small">View All</a>
+                        </div>
+                        <div class="section-card">
+                            <div class="section-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <h4>Placement</h4>
+                            <p class="section-count">6 Notices</p>
+                            <a href="#" class="btn-small">View All</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- All Notices Section -->
+            <section id="all-notices" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-clipboard-list"></i> All Notices</h2>
+                    <div class="filter-controls">
+                        <select id="filterSection">
+                            <option value="">All Sections</option>
+                            <option value="examination">Examination</option>
+                            <option value="scholarship">Scholarship</option>
+                            <option value="academics">Academics</option>
+                            <option value="events">Events</option>
+                            <option value="placement">Placement</option>
+                        </select>
+                        <input type="text" id="searchNotice" placeholder="Search notices...">
+                    </div>
+                </div>
+                <div id="allNoticesList" class="notices-list">
+                    <!-- Notices will be loaded here by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Manage Admins Section -->
+            <section id="manage-admins" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-users-cog"></i> Manage Section Admins</h2>
+                </div>
+                <div class="admins-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Section</th>
+                                <th>Email</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>exam_admin</td>
+                                <td><span class="badge badge-blue">Examination</span></td>
+                                <td>exam@college.edu</td>
+                                <td><span class="status-active">Active</span></td>
+                                <td>
+                                    <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>scholar_admin</td>
+                                <td><span class="badge badge-green">Scholarship</span></td>
+                                <td>scholarship@college.edu</td>
+                                <td><span class="status-active">Active</span></td>
+                                <td>
+                                    <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>acad_admin</td>
+                                <td><span class="badge badge-purple">Academics</span></td>
+                                <td>academics@college.edu</td>
+                                <td><span class="status-active">Active</span></td>
+                                <td>
+                                    <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>event_admin</td>
+                                <td><span class="badge badge-orange">Events</span></td>
+                                <td>events@college.edu</td>
+                                <td><span class="status-active">Active</span></td>
+                                <td>
+                                    <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>place_admin</td>
+                                <td><span class="badge badge-red">Placement</span></td>
+                                <td>placement@college.edu</td>
+                                <td><span class="status-active">Active</span></td>
+                                <td>
+                                    <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section id="statistics" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-bar"></i> Statistics</h2>
+                </div>
+                <div class="stats-content">
+                    <div class="chart-placeholder">
+                        <i class="fas fa-chart-line"></i>
+                        <p>Statistical charts and analytics will be displayed here</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script-backend.js"></script>
+</body>
+</html>
